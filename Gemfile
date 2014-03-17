@@ -13,6 +13,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'friendly_id', '~> 5.0.0'
 
 group :test, :development do
   gem 'rspec-rails'
