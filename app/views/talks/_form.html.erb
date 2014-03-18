@@ -1,0 +1,39 @@
+<%= form_for(talk) do |f| %>
+  <% if talk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(talk.errors.count, "error") %> prohibited this talk from being saved:</h2>
+
+      <ul>
+      <% talk.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Título da palestra", class: "span4" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :slug %>
+    <div class="input-prepend">
+      <span class="add-on"><%= "#{talks_url}/" %></span>
+      <%= f.text_field :slug, placeholder: "titulo-da-palestra" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, placeholder: "Descrição sobre do que se trata a palestra.", class: "span8" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :deadline %><br>
+    <%= f.date_select :deadline %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Criar palestra", class: "btn btn-primary" %>
+  </div>
+<% end %>
