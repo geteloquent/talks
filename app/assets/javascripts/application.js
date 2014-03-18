@@ -14,4 +14,16 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales/pt-BR
 //= require_tree .
+
+$(document).on('page:load', function() {
+  window['rangy'].initialized = false
+})
+
+$(function() {
+  $('.wysihtml5').each(function(i, elem) {
+    $(elem).wysihtml5({locale: "pt-BR"});
+  });
+});

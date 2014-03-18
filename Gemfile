@@ -15,6 +15,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'friendly_id', '~> 5.0.0'
 gem 'twitter-bootstrap-rails'
+gem "bootstrap-wysihtml5-rails", "~> 0.3.1.23"
 
 group :test, :development do
   gem 'rspec-rails'
