@@ -31,7 +31,7 @@
 
   <div class="field">
     <%= f.label :deadline %><br>
-    <%= f.date_select :deadline %>
+    <%= f.text_field :deadline, class: "datepicker" %>
   </div>
   <div class="actions">
     <%= f.submit "Criar palestra", class: "btn btn-primary" %>

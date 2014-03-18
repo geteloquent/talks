@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
+//= require jquery.ui.datepicker-pt-BR
 //= require twitter/bootstrap
 //= require turbolinks
 //= require bootstrap-wysihtml5
@@ -26,4 +28,6 @@ $(function() {
   $('.wysihtml5').each(function(i, elem) {
     $(elem).wysihtml5({locale: "pt-BR"});
   });
+
+  $('.datepicker').datepicker();
 });
