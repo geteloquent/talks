@@ -8,5 +8,5 @@ class Talk < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 3 }
   validates :slug, presence: true, uniqueness: true, length: { minimum: 3 }
   validates :description, presence: true
-  validates :deadline, presence: true
+  validates :deadline, presence: true, timeliness: { on_or_after: lambda { Date.current } }
 end

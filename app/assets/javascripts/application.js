@@ -63,5 +63,5 @@ $(function() {
     $(elem).wysihtml5({locale: "pt-BR"});
   });
 
-  $('.datepicker').datepicker();
+  $('.datepicker').datepicker({ minDate: "0d" });
 });

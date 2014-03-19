@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :talk do
-    title Faker::Lorem.sentence
+    title { Faker::Lorem.sentence }
     slug { Faker::Internet.slug }
-    description Faker::Lorem
-    deadline "2014-03-14"
+    description { Faker::Lorem.sentences.join(" ") }
+    deadline Date.today
   end
 end

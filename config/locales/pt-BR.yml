@@ -123,6 +123,14 @@ pt-BR:
       too_long: ! 'é muito longo (máximo: %{count} caracteres)'
       too_short: ! 'é muito curto (mínimo: %{count} caracteres)'
       wrong_length: não possui o tamanho esperado (%{count} caracteres)
+      invalid_date: "não é uma data válida"
+      invalid_time: "não é uma hora válida"
+      invalid_datetime: "não é uma data e hora válidas"
+      is_at: "deve ser em %{restriction}"
+      before: "deve ser antes de %{restriction}"
+      on_or_before: "deve ser em ou antes de %{restriction}"
+      after: "deve ser depois de %{restriction}"
+      on_or_after: "deve ser em ou depois de %{restriction}"
     template:
       body: ! 'Por favor, verifique o(s) seguinte(s) campo(s):'
       header:
