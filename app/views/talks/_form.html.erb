@@ -13,24 +13,26 @@
 
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Título da palestra", class: "span4" %>
+    <%= f.text_field :title, placeholder: "Título da palestra", class: "span4", id: "js-talk-title" %>
   </div>
 
   <div class="field">
     <%= f.label :slug %>
     <div class="input-prepend">
       <span class="add-on"><%= "#{talks_url}/" %></span>
-      <%= f.text_field :slug, placeholder: "titulo-da-palestra" %>
+      <%= f.text_field :slug, placeholder: "titulo-da-palestra", id: "js-talk-slug" %>
     </div>
+    <span class="btn" id="js-talk-slug-availability-button"><i class="icon-refresh"></i></span>
+    <span class="label" id="js-talk-slug-availability-label"></span>
   </div>
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description, placeholder: "Descrição sobre do que se trata a palestra.", class: "span8 wysihtml5" %>
+    <%= f.text_area :description, placeholder: "Descrição sobre do que se trata a palestra.", class: "span8 wysihtml5", rows: 8 %>
   </div>
 
   <div class="field">
-    <%= f.label :deadline %><br>
+    <%= f.label :deadline %>
     <%= f.text_field :deadline, class: "datepicker" %>
   </div>
   <div class="actions">

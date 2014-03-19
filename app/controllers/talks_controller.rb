@@ -1,4 +1,8 @@
 class TalksController < ApplicationController
+  def slug_available
+    render json: { status: Talk.exists?(slug: params[:slug]) }.to_json
+  end
+
   def new
     @talk = Talk.new
   end
