@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :audience do
-    name "Designer"
+    name { Faker::Lorem.word }
   end
 end

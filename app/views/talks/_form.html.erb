@@ -1,41 +1,69 @@
-<%= form_for(talk) do |f| %>
+<%= nested_form_for(talk) do |f| %>
   <% if talk.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(talk.errors.count, "error") %> prohibited this talk from being saved:</h2>
+    <div class="row-fluid">
+      <div id="error_explanation" class="alert alert-error span8">
+        <h4><%= pluralize(talk.errors.count, "erro") %> impediu(ram) esta palestra de ser salva:</h4>
 
-      <ul>
-      <% talk.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% talk.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: "Título da palestra", class: "span4", id: "js-talk-title" %>
+    <%= f.label :title, class: "control-label" %>
+    <%= f.text_field :title, placeholder: "Título da palestra", class: "span4 js-talk-title" %>
   </div>
 
-  <div class="field">
-    <%= f.label :slug %>
+  <div class="field field-talk-slug clearfix">
+    <%= f.label :slug, class: "control-label" %>
     <div class="input-prepend">
-      <span class="add-on"><%= "#{talks_url}/" %></span>
-      <%= f.text_field :slug, placeholder: "titulo-da-palestra", id: "js-talk-slug" %>
+      <%= content_tag :span, "#{talks_url}/", class: "add-on" %>
+      <%= f.text_field :slug, placeholder: "titulo-da-palestra", class: "js-talk-slug" %>
     </div>
     <span class="btn" id="js-talk-slug-availability-button"><i class="icon-refresh"></i></span>
     <span class="label" id="js-talk-slug-availability-label"></span>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label :description, class: "control-label" %>
     <%= f.text_area :description, placeholder: "Descrição sobre do que se trata a palestra.", class: "span8 wysihtml5", rows: 8 %>
   </div>
 
-  <div class="field">
-    <%= f.label :deadline %>
-    <%= f.text_field :deadline, class: "datepicker" %>
+  <div class="field field-talk-audiences">
+    <%= f.label :audiences, class: "control-label" %>
+    <p>Qual o público alvo?</p>
+    <%= f.collection_select(:audience_ids, Audience.all, :id, :name, { include_hidden: false }, multiple: true) %>
+    <%= f.fields_for :audiences do |audience_form| %>
+      <%= audience_form.text_field :name %>
+      <%= audience_form.link_to_remove content_tag(:i, nil, class: "icon-minus"), class: "btn btn-danger" %>
+    <% end %>
+    <%= f.link_to_add :audiences do %>
+      <i class="icon-plus"></i> Adicionar uma nova audiência
+    <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit "Criar palestra", class: "btn btn-primary" %>
+
+  <div class="field">
+    <%= f.label :deadline, class: "control-label" %>
+    <p>Quando deverá ficar pronta?</p>
+    <%= f.text_field :deadline, class: "span2 datepicker" %>
+  </div>
+
+  <div class="field field-talk-references">
+    <%= f.label :references, class: "control-label" %>
+    <%= f.fields_for :references do |reference_form| %>
+      <%= reference_form.text_field :url, class: "span8" %>
+      <%= reference_form.link_to_remove content_tag(:i, nil, class: "icon-minus"), class: "btn btn-danger" %>
+    <% end %>
+    <%= f.link_to_add :references do %>
+      <i class="icon-plus"></i> Adicionar mais um link
+    <% end %>
+  </div>
+
+  <div class="clearfix span8">
+    <%= f.submit "Criar palestra", class: "btn btn-primary pull-right" %>
   </div>
 <% end %>

@@ -19,6 +19,7 @@
 //= require bootstrap-wysihtml5
 //= require bootstrap-wysihtml5/locales/pt-BR
 //= require speakingurl.min
+//= require jquery_nested_form
 //= require_tree .
 
 $(document)
@@ -26,7 +27,7 @@ $(document)
     window['rangy'].initialized = false
   })
   .on('click', '#js-talk-slug-availability-button', function() {
-    var $slug = $('#js-talk-slug');
+    var $slug = $('.js-talk-slug');
     var slubVal = $slug.val();
 
     if (slubVal.length > 0) {
@@ -46,13 +47,13 @@ $(document)
       });
     }
   })
-  .on('keyup', '#js-talk-title', function() {
+  .on('keyup', '.js-talk-title', function() {
     var titleVal = $(this).val();
-    var $slug = $('#js-talk-slug');
+    var $slug = $('.js-talk-slug');
 
     $slug.val(getSlug(titleVal));
   })
-  .on('focusout', '#js-talk-slug', function() {
+  .on('focusout', '.js-talk-slug', function() {
     var $slug = $(this);
 
     $slug.val(getSlug($slug.val()));

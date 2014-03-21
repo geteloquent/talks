@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317150946) do
+ActiveRecord::Schema.define(version: 20140320210124) do
+
+  create_table "audience_talks", force: true do |t|
+    t.integer "audience_id"
+    t.integer "talk_id"
+  end
 
   create_table "audiences", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "audiences_talks", id: false, force: true do |t|
-    t.integer "audience_id"
-    t.integer "talk_id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20140317150946) do
 
   create_table "references", force: true do |t|
     t.string   "url"
+    t.integer  "talk_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "talk_id"
   end
 
   create_table "talks", force: true do |t|

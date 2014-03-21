@@ -23,5 +23,7 @@ describe Talk do
   end
 
   it { should have_and_belong_to_many :audiences }
+  it { should validate_presence_of(:audiences) }
+
   it { should have_many :references }
 end
