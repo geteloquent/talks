@@ -11,7 +11,6 @@
       <%= content_tag :span, "#{talks_url}/", class: "add-on" %>
       <%= f.text_field :slug, placeholder: "titulo-da-palestra", class: "js-talk-slug" %>
     </div>
-    <span class="btn" id="js-talk-slug-availability-button"><i class="icon-refresh"></i></span>
     <span class="label" id="js-talk-slug-availability-label"></span>
     <%= errors_for(f.object, :slug) %>
   </div>

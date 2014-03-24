@@ -22,11 +22,8 @@
 //= require jquery_nested_form
 //= require_tree .
 
-$(document)
-  .on('page:load', function() {
-    window['rangy'].initialized = false
-  })
-  .on('click', '#js-talk-slug-availability-button', function() {
+var UTIL = {
+  slugAvailable: function() {
     var $slug = $('.js-talk-slug');
     var slubVal = $slug.val();
 
@@ -46,6 +43,12 @@ $(document)
         }
       });
     }
+  }
+};
+
+$(document)
+  .on('page:load', function() {
+    window['rangy'].initialized = false
   })
   .on('keyup', '.js-talk-title', function() {
     var titleVal = $(this).val();
@@ -57,6 +60,10 @@ $(document)
     var $slug = $(this);
 
     $slug.val(getSlug($slug.val()));
+    UTIL.slugAvailable();
+  })
+  .on('focusout', '.js-talk-title', function() {
+    UTIL.slugAvailable();
   });
 
 $(function() {
