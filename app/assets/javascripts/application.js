@@ -30,7 +30,7 @@ $(document)
     var $slug = $('.js-talk-slug');
     var slubVal = $slug.val();
 
-    if (slubVal.length > 0) {
+    if (slubVal.length >= 3) {
       $.getJSON('/slug_available', { slug: slubVal }, function(data) {
         var $availabilityLabel = $('#js-talk-slug-availability-label').show();
         if (data["status"]) {

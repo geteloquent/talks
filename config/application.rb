@@ -21,7 +21,11 @@ module Elotalks
     config.i18n.default_locale = :"pt-BR"
 
     config.action_view.field_error_proc = Proc.new { |html_tag, instance|
-      "<div class=\"control-group error\">#{html_tag}</div>".html_safe
+      if html_tag =~ /\<label/
+        "<div class=\"control-group error\">#{html_tag}</div>".html_safe
+      else
+        html_tag
+      end
     }
   end
 end

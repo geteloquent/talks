@@ -1,21 +1,8 @@
 <%= nested_form_for(talk) do |f| %>
-  <% if talk.errors.any? %>
-    <div class="row-fluid">
-      <div id="error_explanation" class="alert alert-error span8">
-        <h4><%= pluralize(talk.errors.count, "erro") %> impediu(ram) esta palestra de ser salva:</h4>
-
-        <ul>
-        <% talk.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= f.label :title, class: "control-label" %>
     <%= f.text_field :title, placeholder: "Título da palestra", class: "span4 js-talk-title" %>
+    <%= errors_for(f.object, :title) %>
   </div>
 
   <div class="field field-talk-slug clearfix">
@@ -26,11 +13,13 @@
     </div>
     <span class="btn" id="js-talk-slug-availability-button"><i class="icon-refresh"></i></span>
     <span class="label" id="js-talk-slug-availability-label"></span>
+    <%= errors_for(f.object, :title) %>
   </div>
 
   <div class="field">
     <%= f.label :description, class: "control-label" %>
     <%= f.text_area :description, placeholder: "Descrição sobre do que se trata a palestra.", class: "span8 wysihtml5", rows: 8 %>
+    <%= errors_for(f.object, :description) %>
   </div>
 
   <div class="field field-talk-audiences">
@@ -38,25 +27,28 @@
     <p>Qual o público alvo?</p>
     <%= f.collection_select(:audience_ids, Audience.all, :id, :name, { include_hidden: false }, multiple: true) %>
     <%= f.fields_for :audiences do |audience_form| %>
-      <%= audience_form.text_field :name %>
+      <%= audience_form.text_field :name, placeholder: "Nome para a nova audiência" %>
       <%= audience_form.link_to_remove content_tag(:i, nil, class: "icon-minus"), class: "btn btn-danger" %>
     <% end %>
     <%= f.link_to_add :audiences do %>
       <i class="icon-plus"></i> Adicionar uma nova audiência
     <% end %>
+    <%= errors_for(f.object, :audiences) %>
   </div>
 
   <div class="field">
     <%= f.label :deadline, class: "control-label" %>
     <p>Quando deverá ficar pronta?</p>
-    <%= f.text_field :deadline, class: "span2 datepicker" %>
+    <%= f.text_field :deadline, class: "span2 datepicker", placeholder: "DD/MM/AAAA" %>
+    <%= errors_for(f.object, :deadline) %>
   </div>
 
   <div class="field field-talk-references">
     <%= f.label :references, class: "control-label" %>
     <%= f.fields_for :references do |reference_form| %>
-      <%= reference_form.text_field :url, class: "span8" %>
+      <%= reference_form.text_field :url, class: "span8", placeholder: "http://www..." %>
       <%= reference_form.link_to_remove content_tag(:i, nil, class: "icon-minus"), class: "btn btn-danger" %>
+      <%= errors_for(reference_form.object, :url) %>
     <% end %>
     <%= f.link_to_add :references do %>
       <i class="icon-plus"></i> Adicionar mais um link
