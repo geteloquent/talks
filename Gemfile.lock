@@ -114,6 +114,8 @@ GEM
       sprockets-rails (~> 2.0.0)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
+    simple-navigation (3.13.0)
+      activesupport (>= 2.3.2)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -165,6 +167,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   shoulda-matchers
+  simple-navigation
   sqlite3
   turbolinks
   twitter-bootstrap-rails

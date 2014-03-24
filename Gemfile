@@ -21,6 +21,7 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-wysihtml5-rails', '~> 0.3.1.23'
 gem 'validates_timeliness', '~> 3.0'
 gem 'nested_form'
+gem 'simple-navigation'
 
 group :test, :development do
   gem 'rspec-rails'
