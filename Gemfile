@@ -24,6 +24,7 @@ gem 'validates_timeliness', '~> 3.0'
 gem 'nested_form'
 gem 'simple-navigation'
 gem 'delegate_accessors'
+gem 'zeroclipboard-rails'
 
 group :test, :development do
   gem 'rspec-rails'
