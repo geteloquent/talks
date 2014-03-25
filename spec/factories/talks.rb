@@ -6,5 +6,6 @@ FactoryGirl.define do
     slug { Faker::Internet.slug }
     description { Faker::Lorem.sentences.join(" ") }
     deadline Date.today
+    audiences { [FactoryGirl.create(:audience)] }
   end
 end
