@@ -20,6 +20,7 @@
 //= require bootstrap-wysihtml5/locales/pt-BR
 //= require speakingurl.min
 //= require jquery_nested_form
+//= require zeroclipboard
 //= require_tree .
 
 var UTIL = {
@@ -72,4 +73,29 @@ $(function() {
   });
 
   $('.datepicker').datepicker({ minDate: "0d" });
+
+  // Copiar link da palestra.
+  var $copyLink = $('#js-copy-talk-link');
+  if ($copyLink.length) {
+    var _defaults = {
+      title: 'Copiar',
+      copiedHint: 'Copiado!'
+    };
+
+    var clip = new ZeroClipboard($copyLink);
+    var $bridge = $('#global-zeroclipboard-html-bridge');
+
+    clip
+      .on('load', function(client) {
+        $bridge.tooltip({ title: _defaults.title });
+      })
+      .on('complete', function(client, args) {
+        $bridge
+          .attr('data-original-title', _defaults.copiedHint)
+          .tooltip('show');
+      })
+      .on('noflash wrongflash', function(client) {
+        $copyLink.hide();
+      });
+  }
 });

@@ -22,6 +22,7 @@ gem 'bootstrap-wysihtml5-rails', '~> 0.3.1.23'
 gem 'validates_timeliness', '~> 3.0'
 gem 'nested_form'
 gem 'simple-navigation'
+gem 'zeroclipboard-rails'
 
 group :test, :development do
   gem 'rspec-rails'
