@@ -4,8 +4,7 @@ class Talk < ActiveRecord::Base
 
   has_many :references, dependent: :destroy
   accepts_nested_attributes_for :references, allow_destroy: true, reject_if: proc { |a| a['url'].blank? }
-  has_many :audience_talks
-  has_many :audiences, through: :audience_talks
+  has_and_belongs_to_many :audiences
   accepts_nested_attributes_for :audiences, reject_if: proc { |a| a['name'].blank? }
 
   validates :title, presence: true, length: { minimum: 3 }
