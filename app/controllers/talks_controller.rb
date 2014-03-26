@@ -1,4 +1,10 @@
 class TalksController < ApplicationController
+  before_action :set_talk, only: [:show]
+
+  # GET /talks/:id
+  def show
+  end
+
   def slug_available
     render json: { status: Talk.exists?(slug: params[:slug]) }.to_json
   end
@@ -28,5 +34,8 @@ class TalksController < ApplicationController
         nested_audiences_attributes: [:name, :_destroy],
         references_attributes: [:url, :_destroy])
     end
-end
 
+    def set_talk
+      @talk = Talk.friendly.find(params[:id])
+    end
+end

@@ -1,7 +1,7 @@
 Elotalks::Application.routes.draw do
   get 'slug_available' => 'talks#slug_available', as: 'slug_available'
 
-  resources :talks, only: [:new, :create]
+  resources :talks, only: [:new, :create, :show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
