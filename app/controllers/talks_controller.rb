@@ -1,4 +1,10 @@
 class TalksController < ApplicationController
+  before_action :set_talk, only: [:show]
+
+  # GET /talks/:id
+  def show
+  end
+
   def slug_available
     render json: { status: Talk.exists?(slug: params[:slug]) }.to_json
   end
@@ -13,7 +19,7 @@ class TalksController < ApplicationController
     params[:talk][:audience_ids].try(:each) { |id| @talk.audiences << Audience.find(id) }
 
     if @talk.save
-      redirect_to new_talk_path, notice: 'A palestra foi criada com sucesso.'
+      redirect_to @talk, notice: 'A palestra foi criada com sucesso.'
     else
       render action: 'new'
     end
@@ -26,5 +32,8 @@ class TalksController < ApplicationController
         audiences_attributes: [:name],
         references_attributes: [:url, :_destroy])
     end
-end
 
+    def set_talk
+      @talk = Talk.friendly.find(params[:id])
+    end
+end
