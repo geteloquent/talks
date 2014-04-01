@@ -64,12 +64,11 @@ $(document)
   })
   .on('focusout', '.js-talk-title', function() {
     UTIL.slugAvailable();
-  });
+  })
+  .on('page:change', function() {
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({locale: "pt-BR"});
+    });
 
-$(function() {
-  $('.wysihtml5').each(function(i, elem) {
-    $(elem).wysihtml5({locale: "pt-BR"});
+    $('.datepicker').datepicker({ minDate: "0d" });
   });
-
-  $('.datepicker').datepicker({ minDate: "0d" });
-});
