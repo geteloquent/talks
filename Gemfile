@@ -5,8 +5,9 @@ gem 'rails', '4.0.3'
 
 group :development do
   gem 'sqlite3'
-  gem 'debugger'
+  gem 'byebug'
   gem 'quiet_assets'
+  gem 'guard-bundler'
 end
 
 gem 'sass-rails', '~> 4.0.0'
@@ -22,6 +23,7 @@ gem 'bootstrap-wysihtml5-rails', '~> 0.3.1.23'
 gem 'validates_timeliness', '~> 3.0'
 gem 'nested_form'
 gem 'simple-navigation'
+gem 'delegate_accessors'
 
 group :test, :development do
   gem 'rspec-rails'
