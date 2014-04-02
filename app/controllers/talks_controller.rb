@@ -4,17 +4,18 @@ class TalksController < ApplicationController
   end
 
   def new
-    @talk = Talk.new
-    @talk.references.build
+    @talk = TalkForm.new
+    @talk.build_reference
   end
 
   def create
-    @talk = Talk.new(talk_params)
-    params[:talk][:audience_ids].try(:each) { |id| @talk.audiences << Audience.find(id) }
+    @talk = TalkForm.new(talk_params)
 
-    if @talk.save
+    if @talk.submit
       redirect_to new_talk_path, notice: 'A palestra foi criada com sucesso.'
     else
+      @talk.build_reference if @talk.references.empty?
+      flash[:alert] = 'A palestra não pode ser salva.'
       render action: 'new'
     end
   end
@@ -23,7 +24,8 @@ class TalksController < ApplicationController
 
     def talk_params
       params.require(:talk).permit(:title, :slug, :description, :deadline,
-        audiences_attributes: [:name],
+        audience_ids: [],
+        nested_audiences_attributes: [:name, :_destroy],
         references_attributes: [:url, :_destroy])
     end
 end

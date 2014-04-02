@@ -25,11 +25,12 @@
     <%= f.label :audiences, class: "control-label" %>
     <p>Qual o público alvo?</p>
     <%= f.collection_select(:audience_ids, Audience.all, :id, :name, { include_hidden: false }, multiple: true) %>
-    <%= f.fields_for :audiences do |audience_form| %>
+    <%= f.fields_for :nested_audiences do |audience_form| %>
       <%= audience_form.text_field :name, placeholder: "Nome para a nova audiência" %>
       <%= audience_form.link_to_remove content_tag(:i, nil, class: "icon-minus"), class: "btn btn-danger" %>
+      <%= errors_for(audience_form.object, :name) %>
     <% end %>
-    <%= f.link_to_add :audiences do %>
+    <%= f.link_to_add :nested_audiences, model_object: Audience.new do %>
       <i class="icon-plus"></i> Adicionar uma nova audiência
     <% end %>
     <%= errors_for(f.object, :audiences) %>
@@ -49,7 +50,7 @@
       <%= reference_form.link_to_remove content_tag(:i, nil, class: "icon-minus"), class: "btn btn-danger" %>
       <%= errors_for(reference_form.object, :url) %>
     <% end %>
-    <%= f.link_to_add :references do %>
+    <%= f.link_to_add :references, model_object: Reference.new do %>
       <i class="icon-plus"></i> Adicionar mais um link
     <% end %>
   </div>

@@ -211,12 +211,10 @@ pt-BR:
       short: ! '%d de %B, %H:%M'
     pm: ''
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
     models:
       talk: Palestra
+  activemodel:
     attributes:
       talk:
         title: Título
@@ -225,9 +223,9 @@ pt-BR:
         deadline: Deadline
         audiences: Audiências
         references: Referências
-      audience:
-        name: Nome
-      reference:
-        url: Link
     errors:
-      <<: *errors
+      models:
+        talk:
+          attributes:
+            audiences:
+              too_short: Selecione ou adicione pelo menos %{count} audiência.
