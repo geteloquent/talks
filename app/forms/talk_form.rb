@@ -22,12 +22,7 @@ class TalkForm < BaseForm
     return false unless valid?
 
     ActiveRecord::Base.transaction do
-      record.save
-
-      unless (record.audiences.map(&:valid?) +
-        record.references.map(&:valid?)).reduce(:&)
-        raise ActiveRecord::Rollback
-      end
+      record.save if save_nested
     end
   end
 
@@ -55,5 +50,13 @@ class TalkForm < BaseForm
 
   def target_class
     Talk
+  end
+
+  def save_nested
+    all_saved = (record.audiences.map(&:save) + \
+      record.references.map(&:save)).reduce(:&)
+    raise ActiveRecord::Rollback unless all_saved
+
+    all_saved
   end
 end
