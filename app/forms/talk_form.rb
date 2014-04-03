@@ -7,22 +7,33 @@ class TalkForm < BaseForm
     timeliness: { on_or_after: lambda { Date.current }, allow_blank: true }
   validates :audiences, length: { minimum: 1 }
 
-  delegate_accessors :title, :slug, :description, :deadline, :references,
-    :audiences, :audience_ids, to: :record
+  delegate_accessors :title, :slug, :description, :deadline, :audiences, \
+    :audience_ids, to: :record
 
   class << self
     delegate :model_name, to: Talk
   end
 
+  def initialize(attributes = {})
+    @references_forms = []
+    super(attributes)
+  end
+
+  def references
+    @references_forms
+  end
+
   def build_reference
-    record.references.build
+    @references_forms << ReferenceForm.new
   end
 
   def submit
     return false unless valid?
 
     ActiveRecord::Base.transaction do
-      record.save if save_nested
+      record.save
+      @references_forms.map { |r| r.talk = record }
+      save_nested
     end
   end
 
@@ -39,7 +50,7 @@ class TalkForm < BaseForm
     references.reject! { |r| r[:url].blank? }
     references.reject! { |r| r.delete(:_destroy) == "1" }
 
-    record.references << references.collect { |r| Reference.new(r) }
+    @references_forms = references.collect { |r| ReferenceForm.new(r) }
   end
 
   def nested_audiences
@@ -54,7 +65,7 @@ class TalkForm < BaseForm
 
   def save_nested
     all_saved = (record.audiences.map(&:save) + \
-      record.references.map(&:save)).reduce(:&)
+      @references_forms.map(&:submit)).reduce(:&)
     raise ActiveRecord::Rollback unless all_saved
 
     all_saved

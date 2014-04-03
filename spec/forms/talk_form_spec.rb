@@ -96,16 +96,10 @@ describe TalkForm do
     end
   end
 
-  describe "#record" do
-    it "returns a Talk" do
-      expect(subject.record).to be_a(Talk)
-    end
-  end
-
   describe "#build_reference" do
     it "should build an empty reference" do
       subject.build_reference
-      expect(subject.references.last.new_record?).to be_true
+      expect(subject.references.last.record.new_record?).to be_true
     end
   end
 

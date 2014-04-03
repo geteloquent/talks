@@ -17,8 +17,17 @@ class BaseForm
 end
 
 class UniquenessValidator < ActiveModel::EachValidator
+  # validate :attribute, uniqueness: { scope: :scope_attribute }
+  def initialize(args)
+    super
+    @scope = args.fetch(:scope, {})
+  end
+
   def validate_each(record, attribute, value)
-    unless record.uniq?({ attribute => value })
+    scope = {}
+    scope = { @scope => record.public_send(@scope) } unless @scope.empty?
+
+    unless record.uniq?(scope.merge(attribute => value))
       record.errors.add(attribute, :taken)
     end
   end
