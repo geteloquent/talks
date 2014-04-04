@@ -70,9 +70,13 @@ class TalkForm < BaseForm
   end
 
   def save_nested
-    all_saved = (@audiences_forms.map(&:submit) + \
-      @references_forms.map(&:submit)).reduce(:&)
-    raise ActiveRecord::Rollback unless all_saved
+    if @audiences_forms.empty? && @references_forms.empty?
+      all_saved = true
+    else
+      all_saved = (@audiences_forms.map(&:submit) + \
+        @references_forms.map(&:submit)).reduce(:&)
+      raise ActiveRecord::Rollback unless all_saved
+    end
 
     all_saved
   end
