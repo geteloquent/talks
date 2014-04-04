@@ -7,8 +7,8 @@ class TalkForm < BaseForm
     timeliness: { on_or_after: lambda { Date.current }, allow_blank: true }
   validates :audiences, length: { minimum: 1 }
 
-  delegate_accessors :title, :slug, :description, :deadline, :audiences, \
-    :audience_ids, to: :record
+  delegate_accessors :title, :slug, :description, :deadline, :audience_ids, \
+    to: :record
 
   class << self
     delegate :model_name, to: Talk
@@ -16,7 +16,16 @@ class TalkForm < BaseForm
 
   def initialize(attributes = {})
     @references_forms = []
-    super(attributes)
+    @audiences_forms = []
+    super
+  end
+
+  def audiences
+    @audiences_forms.map(&:record) + record.audiences
+  end
+
+  def nested_audiences
+    @audiences_forms
   end
 
   def references
@@ -33,6 +42,7 @@ class TalkForm < BaseForm
     ActiveRecord::Base.transaction do
       record.save
       @references_forms.map { |r| r.talk = record }
+      @audiences_forms.map { |a| record.audiences << a.record }
       save_nested
     end
   end
@@ -42,7 +52,7 @@ class TalkForm < BaseForm
     audiences.reject! { |r| r[:name].blank? }
     audiences.reject! { |r| r.delete(:_destroy) == "1" }
 
-    record.audiences << audiences.collect { |r| Audience.new(r) }
+    @audiences_forms = audiences.collect { |r| AudienceForm.new(r) }
   end
 
   def references_attributes=(attributes)
@@ -53,10 +63,6 @@ class TalkForm < BaseForm
     @references_forms = references.collect { |r| ReferenceForm.new(r) }
   end
 
-  def nested_audiences
-    record.audiences.select { |a| a.new_record? }
-  end
-
   private
 
   def target_class
@@ -64,7 +70,7 @@ class TalkForm < BaseForm
   end
 
   def save_nested
-    all_saved = (record.audiences.map(&:save) + \
+    all_saved = (@audiences_forms.map(&:submit) + \
       @references_forms.map(&:submit)).reduce(:&)
     raise ActiveRecord::Rollback unless all_saved
 

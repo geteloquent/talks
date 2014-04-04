@@ -22,11 +22,6 @@ describe TalkForm do
   # it { should ensure_length_of(:audiences).is_at_least(1) }
 
   shared_examples_for "an invalid form" do
-    it "does not invoke Talk#save" do
-      expect_any_instance_of(Talk).to_not receive(:save)
-      subject.submit
-    end
-
     it "returns false" do
       expect(subject.submit).to be_false
     end
@@ -41,6 +36,11 @@ describe TalkForm do
 
     it_behaves_like "an invalid form"
 
+    it "does not invoke Talk#save" do
+      expect_any_instance_of(Talk).to_not receive(:save)
+      subject.submit
+    end
+
     it "adds taken error to slug" do
       subject.submit
       expect(subject.errors[:slug]).to_not be_empty
@@ -54,7 +54,7 @@ describe TalkForm do
     end
 
     it "invokes Audience#save" do
-      expect_any_instance_of(Audience).to receive(:save)
+      expect_any_instance_of(Audience).to receive(:save).at_least(:once)
       subject.submit
     end
 
@@ -65,7 +65,11 @@ describe TalkForm do
     context "with invalid params" do
       context "when a talk attribute is invalid" do
         let(:attributes) { attributes_for(:talk, title: nil) }
-        it_behaves_like "an invalid form"
+
+        it "does not invoke Talk#save" do
+          expect_any_instance_of(Talk).to_not receive(:save)
+          subject.submit
+        end
       end
 
       context "when no audience is selected" do
@@ -145,7 +149,6 @@ describe TalkForm do
       attributes_for(:talk).merge(audience_ids: [audience.id], \
         nested_audiences_attributes: nested_audiences_attributes)
     end
-    before { attributes.merge!(audience_ids: [audience.id], )}
 
     it "returns only audiences that are not saved" do
       expect(subject.nested_audiences.size).to eq(1)
