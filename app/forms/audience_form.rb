@@ -1,5 +1,5 @@
 class AudienceForm < BaseForm
-  delegate_accessors :name, :talk, to: :record
+  delegate_accessors :name, to: :record
   delegate :_destroy, to: :record
 
   validates :name, presence: true, uniqueness: true

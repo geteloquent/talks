@@ -19,8 +19,6 @@ describe TalkForm do
   it { should validate_presence_of(:deadline) }
   it { should_not allow_value(Date.yesterday).for(:deadline) }
 
-  # it { should ensure_length_of(:audiences).is_at_least(1) }
-
   shared_examples_for "an invalid form" do
     it "returns false" do
       expect(subject.submit).to be_false
@@ -103,7 +101,7 @@ describe TalkForm do
   describe "#build_reference" do
     it "should build an empty reference" do
       subject.build_reference
-      expect(subject.references.last.record.new_record?).to be_true
+      expect(subject.references.last.record).to be_a_new_record
     end
   end
 
@@ -143,15 +141,23 @@ describe TalkForm do
     end
   end
 
-  describe "#nested_audiences" do
+  context "associated audiences and nested ones" do
     let(:audience) { create(:audience) }
     let(:attributes) do
       attributes_for(:talk).merge(audience_ids: [audience.id], \
         nested_audiences_attributes: nested_audiences_attributes)
     end
 
-    it "returns only audiences that are not saved" do
-      expect(subject.nested_audiences.size).to eq(1)
+    describe "#nested_audiences" do
+      it "returns only audiences that are not saved" do
+        expect(subject.nested_audiences).to have(1).items
+      end
+    end
+
+    describe "#audiences" do
+      it "returns both associated audiences and nested ones" do
+        expect(subject.audiences).to have(2).items
+      end
     end
   end
 end
