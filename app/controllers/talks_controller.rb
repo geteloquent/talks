@@ -18,7 +18,7 @@ class TalksController < ApplicationController
     @talk = TalkForm.new(talk_params)
 
     if @talk.submit
-      redirect_to new_talk_path, notice: 'A palestra foi criada com sucesso.'
+      redirect_to @talk.record, notice: 'A palestra foi criada com sucesso.'
     else
       @talk.build_reference if @talk.references.empty?
       flash[:alert] = 'A palestra não pode ser salva.'
