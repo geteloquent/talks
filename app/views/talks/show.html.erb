@@ -9,7 +9,7 @@
 
   <div class="talk-metadata clearfix">
     <div class="pull-left">
-      <%= content_tag :span, t('activerecord.attributes.talk.deadline'), class: "talk-attribute" %>
+      <%= content_tag :span, t('activemodel.attributes.talk.deadline'), class: "talk-attribute" %>
       <%= content_tag :span, l(@talk.deadline, format: :default), class: "talk-deadline" %>
     </div>
     <div class="pull-right">
@@ -29,7 +29,7 @@
   <hr>
 
   <div class="talk-audiences-wrapper">
-    <%= content_tag :h3, t('activerecord.attributes.talk.audiences'), class: "talk-attribute" %>
+    <%= content_tag :h3, t('activemodel.attributes.talk.audiences'), class: "talk-attribute" %>
     <ul class="unstyled inline">
       <%= render @talk.audiences %>
     </ul>
@@ -37,7 +37,7 @@
 
   <% if @talk.references.any? %>
     <div class="talk-references-wrapper">
-      <%= content_tag :h3, t('activerecord.attributes.talk.references'), class: "talk-attribute" %>
+      <%= content_tag :h3, t('activemodel.attributes.talk.references'), class: "talk-attribute" %>
       <ol>
         <%= render @talk.references %>
       </ol>
