@@ -1,0 +1,46 @@
+<%= content_for :scripts do %>
+  <%= javascript_include_tag params[:controller], "data-turbolinks-track" => true %>
+<% end %>
+
+<div class="talk">
+  <div class="page-header">
+    <%= content_tag :h2, @talk.title, class: "talk-attribute" %>
+  </div>
+
+  <div class="talk-metadata clearfix">
+    <div class="pull-left">
+      <%= content_tag :span, t('activemodel.attributes.talk.deadline'), class: "talk-attribute" %>
+      <%= content_tag :span, l(@talk.deadline, format: :default), class: "talk-deadline" %>
+    </div>
+    <div class="pull-right">
+      <div class="input-append">
+        <%= content_tag :span, "#{talks_url}/#{@talk.slug}", class: "talk-link uneditable-input span4", id: "talk-access-link" %>
+        <button class="btn" data-clipboard-target="talk-access-link" id="js-copy-talk-link">
+          <i class="icon-copy"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="well">
+    <%= raw @talk.description %>
+  </div>
+  <hr>
+
+  <div class="talk-audiences-wrapper">
+    <%= content_tag :h3, t('activemodel.attributes.talk.audiences'), class: "talk-attribute" %>
+    <ul class="unstyled inline">
+      <%= render @talk.audiences %>
+    </ul>
+  </div>
+
+  <% if @talk.references.any? %>
+    <div class="talk-references-wrapper">
+      <%= content_tag :h3, t('activemodel.attributes.talk.references'), class: "talk-attribute" %>
+      <ol>
+        <%= render @talk.references %>
+      </ol>
+    </div>
+  <% end %>
+</div>
