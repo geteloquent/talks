@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140325120252) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "audiences", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -32,10 +35,10 @@ ActiveRecord::Schema.define(version: 20140325120252) do
     t.datetime "created_at"
   end
 
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "references", force: true do |t|
     t.string   "url"
@@ -53,6 +56,6 @@ ActiveRecord::Schema.define(version: 20140325120252) do
     t.datetime "updated_at"
   end
 
-  add_index "talks", ["slug"], name: "index_talks_on_slug", unique: true
+  add_index "talks", ["slug"], name: "index_talks_on_slug", unique: true, using: :btree
 
 end
