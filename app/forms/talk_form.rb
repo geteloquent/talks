@@ -41,8 +41,6 @@ class TalkForm < BaseForm
 
     ActiveRecord::Base.transaction do
       record.save
-      @references_forms.map { |r| r.talk = record }
-      @audiences_forms.map { |a| record.audiences << a.record }
       save_nested
     end
   end
@@ -70,10 +68,13 @@ class TalkForm < BaseForm
   end
 
   def save_nested
+    @references_forms.each { |r| r.talk = record }
+
     all_saved = (@audiences_forms.map(&:submit) + \
-      @references_forms.map(&:submit)).reduce(:&)
+      @references_forms.map(&:submit)).reduce(true, :&)
     raise ActiveRecord::Rollback unless all_saved
 
+    record.audiences << @audiences_forms.map { |a| a.record }
     all_saved
   end
 end
