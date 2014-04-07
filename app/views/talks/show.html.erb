@@ -1,3 +1,7 @@
+<%= content_for :scripts do %>
+  <%= javascript_include_tag params[:controller], "data-turbolinks-track" => true %>
+<% end %>
+
 <div class="talk">
   <div class="page-header">
     <%= content_tag :h2, @talk.title, class: "talk-attribute" %>
