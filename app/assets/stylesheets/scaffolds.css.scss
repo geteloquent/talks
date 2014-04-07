@@ -1,0 +1,58 @@
+body { padding-bottom: 30px; }
+
+div {
+  &.field {
+    margin-bottom: 10px;
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.text-error {
+  clear: left;
+  margin-bottom: 20px;
+}
+
+.add_nested_fields { display: block; }
+
+.field-talk-references,
+.field-talk-audiences {
+  .fields { overflow: hidden; }
+
+  .btn,
+  input[type="text"] {
+    float: left;
+  }
+
+  .btn,
+  .label {
+    margin-left: 10px;
+  }
+}
+
+.field-talk-audiences +
+.field { margin-top: 20px; }
+
+.field-talk-slug {
+  .input-prepend,
+  .btn,
+  .label {
+    float: left;
+  }
+
+  .btn,
+  .label {
+    margin-left: 10px;
+  }
+
+  .label {
+    margin-top: 6px;
+  }
+}
