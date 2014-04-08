@@ -25,6 +25,7 @@ gem 'nested_form'
 gem 'simple-navigation'
 gem 'delegate_accessors'
 gem 'zeroclipboard-rails'
+gem 'sprockets_better_errors'
 
 group :test, :development do
   gem 'rspec-rails'
