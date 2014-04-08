@@ -56,3 +56,19 @@ div {
     margin-top: 6px;
   }
 }
+
+.page-header {
+  .talk & { margin-bottom: 20px; }
+}
+
+.talk-deadline { display: block; }
+
+.talk-link { font-family: Monaco, Menlo, Consolas, "Courier New", monospace; }
+
+.talk-attribute {
+  color: black;
+  font-weight: bold;
+}
+
+.talk-audiences-wrapper +
+.talk-references-wrapper { padding-top: 10px; }
