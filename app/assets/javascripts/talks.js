@@ -4,7 +4,6 @@
 //= require bootstrap-wysihtml5
 //= require bootstrap-wysihtml5/locales/pt-BR
 //= require speakingurl.min
-//= require zeroclipboard
 
 var UTIL = {
   slugAvailable: function() {
