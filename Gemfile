@@ -27,6 +27,7 @@ gem 'delegate_accessors'
 gem 'zeroclipboard-rails'
 gem 'sprockets_better_errors'
 gem 'acts_as_votable', '~> 0.8.0'
+gem 'draper', '~> 1.3'
 
 group :test, :development do
   gem 'rspec-rails'

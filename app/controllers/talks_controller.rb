@@ -36,6 +36,6 @@ class TalksController < ApplicationController
     end
 
     def set_talk
-      @talk = Talk.friendly.find(params[:id])
+      @talk = Talk.friendly.find(params[:id]).decorate
     end
 end
