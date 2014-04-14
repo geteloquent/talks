@@ -26,7 +26,7 @@ gem 'simple-navigation'
 gem 'delegate_accessors'
 gem 'zeroclipboard-rails'
 gem 'sprockets_better_errors'
-gem 'acts_as_votable', '~> 0.8.0'
+gem 'acts_as_votable'
 gem 'draper', '~> 1.3'
 
 group :test, :development do
