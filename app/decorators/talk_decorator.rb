@@ -13,6 +13,6 @@ class TalkDecorator < Draper::Decorator
   end
 
   def score
-    TalkVoting.new(model).score
+    @score ||= TalkVoting.new(model).score
   end
 end

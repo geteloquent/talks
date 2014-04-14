@@ -1,9 +1,10 @@
 class TalkVoting
-  attr_reader :score
-
   def initialize(talk)
     @talk = talk
-    @score = @talk.likes.size - @talk.dislikes.size
+  end
+
+  def score
+    @talk.likes.size - @talk.dislikes.size
   end
 
   def vote(voter, vote)
