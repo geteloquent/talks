@@ -1,6 +1,14 @@
 class TalksController < ApplicationController
   before_action :set_talk, only: [:show]
 
+  def index
+    if params[:deadline] == 'past'
+      @talks = Talk.where('deadline < ?', Date.today)
+    else
+      @talks = Talk.where('deadline >= ?', Date.today)
+    end
+  end
+
   # GET /talks/:id
   def show
   end

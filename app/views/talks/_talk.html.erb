@@ -1,0 +1,24 @@
+<li>
+  <div class="row-fluid">
+    <div class="span2 text-center">
+      <div class="well well-small">
+        <%# content_tag :strong, talk.score %>
+        <%= content_tag :strong, "10" %>
+        <%# "ponto".pluralize(talk.score) %>
+        <%= "ponto".pluralize(10) %>
+      </div>
+      <%= talk.deadline %>
+    </div>
+    <div class="span7">
+      <%= content_tag :strong, talk.title %>
+      <%= content_tag :p, talk.description %>
+      <ul class="unstyled inline">
+        <%= render talk.audiences %>
+      </ul>
+    </div>
+    <div class="span3">
+      criado por:
+    </div>
+  </div>
+  <hr>
+</li>
