@@ -2,15 +2,14 @@
   <div class="row-fluid">
     <div class="span2 text-center">
       <div class="well well-small">
-        <%# content_tag :strong, talk.score %>
-        <%= content_tag :strong, "10" %>
+        <%= content_tag :strong, talk.score %>
         <%# "ponto".pluralize(talk.score) %>
         <%= "ponto".pluralize(10) %>
       </div>
       <%= talk.deadline %>
     </div>
     <div class="span7">
-      <%= content_tag :strong, talk.title %>
+      <%= link_to talk.title, talk %>
       <%= content_tag :p, talk.description %>
       <ul class="unstyled inline">
         <%= render talk.audiences %>
