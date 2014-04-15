@@ -10,11 +10,11 @@
   <div class="talk-metadata clearfix">
     <div class="pull-left">
       <%= content_tag :span, t('activemodel.attributes.talk.deadline'), class: "talk-attribute" %>
-      <%= content_tag :span, l(@talk.deadline, format: :default), class: "talk-deadline" %>
+      <%= content_tag :span, @talk.deadline, class: "talk-deadline" %>
     </div>
     <div class="pull-right">
       <div class="input-append">
-        <%= content_tag :span, "#{talks_url}/#{@talk.slug}", class: "talk-link uneditable-input span4", id: "talk-access-link" %>
+        <%= content_tag :span, @talk.path, class: "talk-link uneditable-input span4", id: "talk-access-link" %>
         <button class="btn" data-clipboard-target="talk-access-link" id="js-copy-talk-link">
           <i class="icon-copy"></i>
         </button>
@@ -43,4 +43,21 @@
       </ol>
     </div>
   <% end %>
+
+  <hr>
+  <div class="text-center">
+    <h4>O que você achou da proposta?</h4>
+    <%= form_tag talk_votes_path @talk do %>
+      <div class="input-prepend input-append">
+        <button class="btn has-tooltip"  type="submit" name="vote" data-placement="left" title="-1 ponto" value="dislike">
+          <i class="icon-thumbs-down"></i>
+        </button>
+        <%= content_tag :span, pluralize(@talk.score, "ponto"), class: "uneditable-input span2" %>
+        <button class="btn has-tooltip"  type="submit" name="vote" data-placement="right" title="+1 ponto" value="like">
+          <i class="icon-thumbs-up"></i>
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <hr>
 </div>
