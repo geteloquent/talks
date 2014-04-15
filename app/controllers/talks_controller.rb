@@ -2,11 +2,11 @@ class TalksController < ApplicationController
   before_action :set_talk, only: [:show]
 
   def index
-    if params[:deadline] == 'past'
-      @talks = Talk.where('deadline < ?', Date.today)
-    else
-      @talks = Talk.where('deadline >= ?', Date.today)
-    end
+    condition = params[:deadline] == 'past' ? '<' : '>='
+
+    @talks = Talk.where("deadline #{condition} ?", Date.today)
+    @talks = @talks.order('cached_votes_score DESC') if params[:sort_by] == 'score'
+    @talks = @talks.decorate
   end
 
   # GET /talks/:id

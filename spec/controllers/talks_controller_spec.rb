@@ -11,9 +11,20 @@ describe TalksController do
       expect(response).to render_template(:index)
     end
 
-    it "assings all talks as @talks" do
+    it "assings all talks as @talks ordered by deadline" do
       get :index
       expect(assigns(:talks)).to eq(talks)
+    end
+
+    context "when ordering by score" do
+      let(:talks) do
+        3.times.map { |i| create(:talk, cached_votes_score: i) }
+      end
+
+      it "assigns the talks with the correct ordering" do
+        get :index, sort_by: :score
+        expect(assigns(:talks)).to eq(talks.reverse)
+      end
     end
   end
 
