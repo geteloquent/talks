@@ -10,9 +10,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :talks, 'Palestras', talks_path do |tabs|
       tabs.dom_class = 'nav nav-tabs'
       tabs.item :open, 'Em aberto', talks_path, \
-        highlights_on: lambda { !params.has_key? :deadline }
-      tabs.item :past, 'Passadas', talks_path(params.merge(deadline: 'past')), \
-        highlights_on: lambda { params[:deadline] == 'past' }
+        highlights_on: lambda { !params.has_key? :status }
+      tabs.item :past, 'Passadas', talks_path(params.merge(status: 'past')), \
+        highlights_on: lambda { params[:status] == 'past' }
     end
   end
 end
