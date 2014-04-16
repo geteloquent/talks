@@ -2,7 +2,7 @@ class TalkDecorator < Draper::Decorator
   include Draper::LazyHelpers
 
   delegate :title, :slug, :description, :audiences, :references, \
-    :voting_score
+    :cached_votes_score
 
   def deadline
     l(model.deadline)
@@ -10,9 +10,5 @@ class TalkDecorator < Draper::Decorator
 
   def path
     "#{talks_url}/#{slug}"
-  end
-
-  def score
-    @score ||= TalkVoting.new(model).score
   end
 end

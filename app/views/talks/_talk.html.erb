@@ -2,9 +2,8 @@
   <div class="row-fluid">
     <div class="span2 text-center">
       <div class="well well-small">
-        <%= content_tag :strong, talk.score %>
-        <%# "ponto".pluralize(talk.score) %>
-        <%= "ponto".pluralize(10) %>
+        <%= content_tag :strong, talk.cached_votes_score %>
+        <%= "ponto".pluralize talk.cached_votes_score %>
       </div>
       <%= talk.deadline %>
     </div>

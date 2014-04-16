@@ -52,7 +52,7 @@
         <button class="btn has-tooltip"  type="submit" name="vote" data-placement="left" title="-1 ponto" value="dislike">
           <i class="icon-thumbs-down"></i>
         </button>
-        <%= content_tag :span, pluralize(@talk.score, "ponto"), class: "uneditable-input span2" %>
+        <%= content_tag :span, pluralize(@talk.cached_votes_score, "ponto"), class: "uneditable-input span2" %>
         <button class="btn has-tooltip"  type="submit" name="vote" data-placement="right" title="+1 ponto" value="like">
           <i class="icon-thumbs-up"></i>
         </button>

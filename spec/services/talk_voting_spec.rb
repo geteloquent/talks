@@ -6,12 +6,6 @@ describe TalkVoting do
   let(:voter) { User.anonymous }
   let(:vote) { "like" }
 
-  describe "#score" do
-    it "returns a Fixnum" do
-      expect(subject.score).to be_a(Fixnum)
-    end
-  end
-
   describe "#vote" do
     it "invokes Talk#vote" do
       expect(talk).to receive(:vote).with(voter: voter, vote: vote, duplicate: true)
