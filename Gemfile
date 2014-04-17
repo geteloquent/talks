@@ -28,6 +28,7 @@ gem 'zeroclipboard-rails'
 gem 'sprockets_better_errors'
 gem 'acts_as_votable'
 gem 'draper', '~> 1.3'
+gem 'kaminari'
 
 group :test, :development do
   gem 'rspec-rails'

@@ -11,7 +11,7 @@ SimpleNavigation::Configuration.run do |navigation|
       tabs.dom_class = 'nav nav-tabs'
       tabs.item :open, 'Em aberto', talks_path, \
         highlights_on: lambda { !params.has_key? :status }
-      tabs.item :past, 'Passadas', talks_path(params.merge(status: 'past')), \
+      tabs.item :past, 'Passadas', talks_path(status: :past), \
         highlights_on: lambda { params[:status] == 'past' }
     end
   end

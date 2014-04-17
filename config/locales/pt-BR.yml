@@ -229,3 +229,10 @@ pt-BR:
           attributes:
             audiences:
               too_short: Selecione ou adicione pelo menos %{count} audiência.
+  views:
+    pagination:
+      first: «
+      previous: ‹
+      next: ›
+      last: »
+      truncate: ...
