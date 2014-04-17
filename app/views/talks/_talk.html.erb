@@ -2,20 +2,24 @@
   <div class="row-fluid">
     <div class="span2 text-center">
       <div class="well well-small">
-        <%= content_tag :strong, talk.cached_votes_score %>
+        <%= content_tag :span, talk.cached_votes_score, class: "talks-list-score" %>
         <%= "ponto".pluralize talk.cached_votes_score %>
       </div>
-      <%= talk.deadline %>
+      <%= content_tag :strong, talk.deadline, title: "Deadline" %>
     </div>
     <div class="span7">
       <%= link_to talk.title, talk %>
-      <%= content_tag :p, talk.description %>
-      <ul class="unstyled inline">
+      <%= content_tag :p, truncate(strip_tags(talk.description), length: 200) %>
+      <ul class="unstyled inline" title="Audiências">
         <%= render talk.audiences %>
       </ul>
     </div>
     <div class="span3">
-      criado por:
+      criada por:
+      <div class="media">
+        <img src="x" width="32" height="32" class="pull-left">
+        <span class="media-body">Filipe W. Lima</span>
+      </div>
     </div>
   </div>
   <hr>
