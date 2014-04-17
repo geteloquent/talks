@@ -49,11 +49,11 @@
     <h4>O que você achou da proposta?</h4>
     <%= form_tag talk_votes_path @talk do %>
       <div class="input-prepend input-append">
-        <button class="btn has-tooltip"  type="submit" name="vote" data-placement="left" title="-1 ponto" value="dislike">
+        <button class="btn has-tooltip btn-danger" type="submit" name="vote" data-placement="left" title="-1 ponto" value="dislike">
           <i class="icon-thumbs-down"></i>
         </button>
-        <%= content_tag :span, pluralize(@talk.cached_votes_score, "ponto"), class: "uneditable-input span2" %>
-        <button class="btn has-tooltip"  type="submit" name="vote" data-placement="right" title="+1 ponto" value="like">
+        <%= content_tag :span, pluralize(@talk.cached_votes_score, "ponto"), class: "talk-show-score uneditable-input span2" %>
+        <button class="btn has-tooltip btn-primary" type="submit" name="vote" data-placement="right" title="+1 ponto" value="like">
           <i class="icon-thumbs-up"></i>
         </button>
       </div>
