@@ -25,7 +25,6 @@ gem 'nested_form'
 gem 'simple-navigation'
 gem 'delegate_accessors'
 gem 'zeroclipboard-rails'
-gem 'sprockets_better_errors'
 gem 'acts_as_votable'
 gem 'draper', '~> 1.3'
 
