@@ -28,7 +28,7 @@ gem 'acts_as_votable'
 gem 'draper', '~> 1.3'
 
 group :test, :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0.beta2'
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'

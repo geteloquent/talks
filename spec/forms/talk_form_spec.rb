@@ -21,7 +21,7 @@ describe TalkForm do
 
   shared_examples_for "an invalid form" do
     it "returns false" do
-      expect(subject.submit).to be_false
+      expect(subject.submit).to be_falsey
     end
   end
 
@@ -57,7 +57,7 @@ describe TalkForm do
     end
 
     it "returns true" do
-      expect(subject.submit).to be_true
+      expect(subject.submit).to be true
     end
 
     context "with invalid params" do
