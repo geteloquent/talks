@@ -5,7 +5,6 @@ gem 'rails', '4.0.3'
 gem 'pg'
 
 group :development do
-  gem 'byebug'
   gem 'quiet_assets'
   gem 'guard-bundler'
 end
@@ -30,6 +29,7 @@ gem 'draper', '~> 1.3'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'byebug'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'faker'
