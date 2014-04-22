@@ -9,7 +9,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.dom_class = 'btn-group'
     primary.item :next, 'Próximas', \
       talks_path(params.merge(sort_by: 'status')), class: 'btn', \
-      highlights_on: /(#{talks_path}$|status)/
+      highlights_on: lambda { params[:sort_by] != 'score' }
     primary.item :most_voted, 'Mais Votadas', \
       talks_path(params.merge(sort_by: 'score')), class: 'btn', \
       highlights_on: lambda { params[:sort_by] == 'score' }
