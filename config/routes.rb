@@ -1,4 +1,9 @@
 Elotalks::Application.routes.draw do
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/log_out', to: 'sessions#destroy', as: 'log_out'
+
+  resources :sessions, only: [:create]
+
   get 'slug_available' => 'talks#slug_available', as: 'slug_available'
 
   resources :talks, only: [:new, :create, :show] do

@@ -22,6 +22,11 @@
         <span class="brand" href="#">Elotalks</span>
         <div class="container-fluid nav-collapse">
           <%= render_navigation %>
+          <% if current_user %>
+            <%= link_to "Sair", log_out_path, class: "pull-right btn btn-danger" %>
+          <% else %>
+            <%= link_to "Entrar com Github", '/auth/github', class: "pull-right btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </div>

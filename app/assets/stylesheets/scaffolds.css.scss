@@ -77,3 +77,8 @@ div {
   color: black;
   font-weight: bold;
 }
+
+.btn {
+  & +
+  & { margin-right: 10px; }
+}
