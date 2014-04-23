@@ -6,7 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require 'factory_girl'
+require 'factory_girl_rails'
+require 'spec/factories/talk'
 
 Audience.find_or_create_by(name: "Designers")
 Audience.find_or_create_by(name: "Desenvolvedores front-end")
