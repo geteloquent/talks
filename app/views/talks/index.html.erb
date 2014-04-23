@@ -10,9 +10,16 @@
   <%= render_navigation context: :sorting, renderer: :links %>
 </div>
 
-<ol class="unstyled">
-  <%= render @talks %>
-</ol>
+<% if @talks.any? %>
+  <ol class="unstyled">
+    <%= render @talks %>
+  </ol>
+<% else %>
+  <div class="alert alert-block">
+    <h4>Poxa!</h4>
+    Nenhuma palestra encontrada.
+  </div>
+<% end %>
 
 <div class="text-center">
   <%= paginate @talks %>
