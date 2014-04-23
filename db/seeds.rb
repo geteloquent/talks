@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'factory_girl_rails'
-require 'spec/factories/talk'
+require 'spec/factories/talks'
 
 Audience.find_or_create_by(name: "Designers")
 Audience.find_or_create_by(name: "Desenvolvedores front-end")
