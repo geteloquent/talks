@@ -1,14 +1,14 @@
 Elotalks::Application.routes.draw do
   get 'slug_available' => 'talks#slug_available', as: 'slug_available'
 
-  resources :talks, only: [:new, :create, :show] do
+  resources :talks, only: [:new, :create, :show, :index] do
     resources :votes, only: :create
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'talks#new'
+  root 'talks#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Audience.create(name: "Designers")
-Audience.create(name: "Desenvolvedores front-end")
-Audience.create(name: "Desenvolvedores back-end")
+Audience.find_or_create_by(name: "Designers")
+Audience.find_or_create_by(name: "Desenvolvedores front-end")
+Audience.find_or_create_by(name: "Desenvolvedores back-end")
+
+20.times { FactoryGirl.create(:talk) }
