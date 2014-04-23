@@ -1,4 +1,4 @@
-class TalkDecorator < Draper::Decorator
+class TalkDecorator < ApplicationDecorator
   include Draper::LazyHelpers
 
   delegate :title, :slug, :description, :audiences, :references, \

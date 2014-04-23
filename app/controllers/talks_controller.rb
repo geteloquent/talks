@@ -5,9 +5,9 @@ class TalksController < ApplicationController
     condition = params[:status] == 'past' ? '<' : '>='
     ordering = params[:sort_by] == 'score' ? 'cached_votes_score DESC' : 'deadline ASC'
 
-    @talks = TalksDecorator.new(Talk.page(params[:page]). \
+    @talks = Talk.page(params[:page]). \
       where("deadline #{condition} ?", Date.today).order(ordering). \
-      includes(:audiences))
+      includes(:audiences).decorate
   end
 
   # GET /talks/:id
