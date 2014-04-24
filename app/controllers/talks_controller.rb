@@ -21,6 +21,7 @@ class TalksController < ApplicationController
   def new
     @talk = TalkForm.new
     @talk.build_reference
+    authorize! :create, @talk.record
   end
 
   def create

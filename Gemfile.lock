@@ -34,6 +34,7 @@ GEM
     byebug (2.7.0)
       columnize (~> 0.3)
       debugger-linecache (~> 1.2)
+    cancan (1.6.10)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -238,6 +239,7 @@ DEPENDENCIES
   acts_as_votable
   bootstrap-wysihtml5-rails (~> 0.3.1.23)
   byebug
+  cancan
   coffee-rails (~> 4.0.0)
   delegate_accessors
   draper (~> 1.3)

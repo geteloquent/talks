@@ -236,3 +236,6 @@ pt-BR:
       next: ›
       last: »
       truncate: ...
+  unauthorized:
+    create:
+      talk: "Você não tem autorização para criar uma palestra sem estar logado."
