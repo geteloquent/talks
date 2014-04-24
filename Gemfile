@@ -27,13 +27,14 @@ gem 'zeroclipboard-rails'
 gem 'acts_as_votable'
 gem 'draper', '~> 1.3'
 gem 'omniauth-github'
+gem 'kaminari'
 
 group :test, :development do
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rspec-rails', '~> 3.0.0.beta2'
   gem 'byebug'
-  gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'faker'
 end
 
 group :production do

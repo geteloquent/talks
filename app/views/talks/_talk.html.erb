@@ -1,0 +1,26 @@
+<li>
+  <div class="row-fluid">
+    <div class="span2 text-center">
+      <div class="well well-small">
+        <%= content_tag :span, talk.cached_votes_score, class: "talks-list-score" %>
+        <%= "ponto".pluralize talk.cached_votes_score %>
+      </div>
+      <%= content_tag :strong, talk.deadline, title: "Deadline" %>
+    </div>
+    <div class="span7">
+      <%= link_to talk.title, talk %>
+      <%= content_tag :p, truncate(strip_tags(talk.description), length: 200) %>
+      <ul class="unstyled inline" title="Audiências">
+        <%= render talk.audiences %>
+      </ul>
+    </div>
+    <div class="span3">
+      criada por:
+      <div class="media">
+        <%= image_tag "gravatar-140.png", size: "32", class: "pull-left" %>
+        <span class="media-body">Filipe W. Lima</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+</li>

@@ -21,7 +21,7 @@
         </a>
         <span class="brand" href="#">Elotalks</span>
         <div class="container-fluid nav-collapse">
-          <%= render_navigation %>
+          <%= render_navigation level: 1 %>
           <% if current_user %>
             <%= link_to "Sair", log_out_path, class: "pull-right btn btn-danger" %>
           <% else %>
@@ -31,7 +31,6 @@
       </div>
     </div>
   </div>
-
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span8 offset2">

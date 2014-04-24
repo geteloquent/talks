@@ -1,5 +1,7 @@
 body { padding-bottom: 30px; }
 
+.hero-unit { margin-top: 30px; }
+
 div {
   &.field {
     margin-bottom: 10px;
@@ -82,3 +84,11 @@ div {
   & +
   & { margin-right: 10px; }
 }
+
+.talks-list-score {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+}
+
+.talks-sorter { margin-bottom: 20px; }

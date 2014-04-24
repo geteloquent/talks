@@ -1,6 +1,15 @@
 class TalksController < ApplicationController
   before_action :set_talk, only: [:show]
 
+  def index
+    condition = params[:status] == 'past' ? '<' : '>='
+    ordering = params[:sort_by] == 'score' ? 'cached_votes_score DESC' : 'deadline ASC'
+
+    @talks = Talk.page(params[:page]). \
+      where("deadline #{condition} ?", Date.today).order(ordering). \
+      includes(:audiences).decorate
+  end
+
   # GET /talks/:id
   def show
   end

@@ -1,0 +1,26 @@
+<div class="hero-unit">
+  <h1>Elotalks</h1>
+  <p>Aqui você pode criar propostas de palestras para eventos e receber avaliações e sugestões dos seus colegas de trabalho.</p>
+  <%= link_to "Submeta uma palestra", new_talk_path, class: "btn btn-primary btn-large" %>
+</div>
+
+<%= render_navigation level: 2 %>
+
+<div class="talks-sorter text-center">
+  <%= render_navigation context: :sorting, renderer: :links %>
+</div>
+
+<% if @talks.any? %>
+  <ol class="unstyled">
+    <%= render @talks %>
+  </ol>
+<% else %>
+  <div class="alert alert-block">
+    <h4>Poxa!</h4>
+    Nenhuma palestra encontrada.
+  </div>
+<% end %>
+
+<div class="text-center">
+  <%= paginate @talks %>
+</div>
