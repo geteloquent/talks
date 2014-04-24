@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :talks
+
   acts_as_voter
 
   def self.anonymous

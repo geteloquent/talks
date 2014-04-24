@@ -6,9 +6,10 @@ class TalkForm < BaseForm
   validates :deadline, presence: true,
     timeliness: { on_or_after: lambda { Date.current }, allow_blank: true }
   validates :audiences, length: { minimum: 1 }
+  validates :user_id, presence: true
 
   delegate_accessors :title, :slug, :description, :deadline, :audience_ids, \
-    to: :record
+    :user_id, to: :record
 
   class << self
     delegate :model_name, to: Talk
