@@ -21,12 +21,13 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: 'Você foi deslogado.'
   end
 
-  protected
+  private
 
   def info
     info = request.env['omniauth.auth'].info. \
       slice(:nickname, :name, :image, :email)
     user_params = { username: info[:nickname], avatar_url: info[:image], \
-      email: info[:email], name: info[:name] || info[:nickname] }
+      email: info[:email], name: info[:name] || info[:nickname], \
+      github_uid: request.env['omniauth.auth'].uid }
   end
 end

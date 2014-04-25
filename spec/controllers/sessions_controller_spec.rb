@@ -13,7 +13,14 @@ describe SessionsController do
     end
   end
 
-  describe "#destroy" do
-    it "clears the user from the session"
+  describe 'POST create' do
+
+  end
+
+  describe 'GET destroy' do
+    it 'redirects to the root' do
+      get :destroy
+      expect(response).to redirect_to(root_path)
+    end
   end
 end

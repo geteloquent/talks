@@ -5,20 +5,59 @@ describe UserForm do
     { username: "filipewl",
       email: "fwl.ufpe@gmail.com",
       name: "Filipe W. Lima",
-      avatar_url: "https://avatars.githubusercontent.com/u/381395?"
+      avatar_url: "https://avatars.githubusercontent.com/u/381395?",
+      github_uid: "7408346"
     }
   end
   subject { described_class.new(params) }
+
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:username) }
   it { should validate_presence_of(:avatar_url) }
+  it { should validate_presence_of(:github_uid) }
 
   it "returns right username" do
-    expect(subject.record.username).to eq(params[:username])
+    expect(subject.username).to eq(params[:username])
   end
 
   describe "#submit" do
+    context "when uniqueness validation" do
+      shared_examples_for "an invalid form" do |field|
+        it "returns false" do
+          expect(subject.submit).to be false
+        end
+
+        it "does not invoke User#save" do
+          expect_any_instance_of(User).to_not receive(:save)
+          subject.submit
+        end
+
+        it "adds taken error to #{field}" do
+          subject.submit
+          expect(subject.errors[field]).to include(I18n.t('errors.messages.taken'))
+        end
+      end
+
+      context "when duplicated e-mail" do
+        before { create(:user, email: params[:email]) }
+
+        it_behaves_like "an invalid form", :email
+      end
+
+      context "when duplicated user name" do
+        before { create(:user, username: params[:username]) }
+
+        it_behaves_like "an invalid form", :username
+      end
+
+      # context "when duplicated Github UID" do
+      #   before { create(:user, github_uid: params[:github_uid]) }
+
+      #   it_behaves_like "an invalid form", :github_uid
+      # end
+    end
+
     context "when there are valid params" do
       it "returns true" do
         expect(subject.submit).to be true
@@ -30,7 +69,7 @@ describe UserForm do
       end
 
       context "when the user already exists" do
-        let!(:user) { create(:user, email: params[:email]) }
+        let!(:user) { create(:user, github_uid: params[:github_uid]) }
 
         it "initialize the user" do
           subject.submit
