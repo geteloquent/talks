@@ -1,7 +1,10 @@
 class VotesController < ApplicationController
   def create
     talk = Talk.friendly.find(params[:talk_id])
-    TalkVoting.new(talk).vote(User.anonymous, params[:vote])
-    redirect_to talk, notice: "Seu voto foi computado com sucesso!"
+    user = current_user || User.anonymous
+    service = TalkVoting.new(talk, user, params[:vote])
+    service.vote
+
+    redirect_to talk, notice: service.notice
   end
 end

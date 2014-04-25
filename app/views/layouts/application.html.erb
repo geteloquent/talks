@@ -24,6 +24,9 @@
           <%= render_navigation level: 1 %>
           <% if current_user %>
             <%= link_to "Sair", log_out_path, class: "pull-right btn btn-danger" %>
+            <span class="user-welcome">
+              Bem-vindo, <%= content_tag :strong, current_user.name %>!
+            </span>
           <% else %>
             <%= link_to "Entrar com Github", '/auth/github', class: "pull-right btn btn-primary" %>
           <% end %>

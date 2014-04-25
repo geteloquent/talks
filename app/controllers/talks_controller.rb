@@ -25,7 +25,7 @@ class TalksController < ApplicationController
   end
 
   def create
-    @talk = TalkForm.new(talk_params)
+    @talk = TalkForm.new(talk_params.merge(user_id: current_user.id))
 
     if @talk.submit
       redirect_to @talk.record, notice: 'A palestra foi criada com sucesso.'
