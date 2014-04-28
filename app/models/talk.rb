@@ -6,4 +6,5 @@ class Talk < ActiveRecord::Base
 
   has_many :references, dependent: :destroy
   has_and_belongs_to_many :audiences
+  belongs_to :user
 end

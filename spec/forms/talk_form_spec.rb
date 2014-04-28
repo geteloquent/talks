@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe TalkForm do
+  let(:user) { create(:user) }
   let(:attributes) do
     attributes_for(:talk). \
-      merge(nested_audiences_attributes: nested_audiences_attributes)
+      merge(nested_audiences_attributes: nested_audiences_attributes, \
+        user_id: user.id)
   end
   let(:nested_audiences_attributes) { { "0" => attributes_for(:audience) } }
   subject { described_class.new(attributes) }
@@ -18,6 +20,8 @@ describe TalkForm do
 
   it { should validate_presence_of(:deadline) }
   it { should_not allow_value(Date.yesterday).for(:deadline) }
+
+  it { should validate_presence_of(:user_id) }
 
   shared_examples_for "an invalid form" do
     it "returns false" do

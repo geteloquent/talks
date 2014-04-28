@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415202336) do
+ActiveRecord::Schema.define(version: 20140425192831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140415202336) do
     t.integer  "cached_votes_up",       default: 0
     t.integer  "cached_votes_down",     default: 0
     t.integer  "cached_weighted_score", default: 0
+    t.integer  "user_id"
   end
 
   add_index "talks", ["cached_votes_down"], name: "index_talks_on_cached_votes_down", using: :btree
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140415202336) do
   add_index "talks", ["cached_votes_up"], name: "index_talks_on_cached_votes_up", using: :btree
   add_index "talks", ["cached_weighted_score"], name: "index_talks_on_cached_weighted_score", using: :btree
   add_index "talks", ["slug"], name: "index_talks_on_slug", unique: true, using: :btree
+  add_index "talks", ["user_id"], name: "index_talks_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"
@@ -74,6 +76,8 @@ ActiveRecord::Schema.define(version: 20140415202336) do
     t.string   "name"
     t.string   "email"
     t.string   "username"
+    t.string   "avatar_url"
+    t.string   "github_uid"
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree

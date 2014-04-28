@@ -21,10 +21,11 @@ class TalksController < ApplicationController
   def new
     @talk = TalkForm.new
     @talk.build_reference
+    authorize! :create, @talk.record
   end
 
   def create
-    @talk = TalkForm.new(talk_params)
+    @talk = TalkForm.new(talk_params.merge(user_id: current_user.id))
 
     if @talk.submit
       redirect_to @talk.record, notice: 'A palestra foi criada com sucesso.'

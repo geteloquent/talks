@@ -80,6 +80,11 @@ div {
   font-weight: bold;
 }
 
+.btn {
+  & +
+  & { margin-right: 10px; }
+}
+
 .talks-list-score {
   font-weight: bold;
   font-size: 20px;
@@ -87,3 +92,9 @@ div {
 }
 
 .talks-sorter { margin-bottom: 20px; }
+
+.user-welcome {
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}

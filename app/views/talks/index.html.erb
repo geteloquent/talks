@@ -1,7 +1,9 @@
 <div class="hero-unit">
   <h1>Elotalks</h1>
   <p>Aqui você pode criar propostas de palestras para eventos e receber avaliações e sugestões dos seus colegas de trabalho.</p>
-  <%= link_to "Submeta uma palestra", new_talk_path, class: "btn btn-primary btn-large" %>
+  <% if can? :create, Talk.new %>
+    <%= link_to "Submeta uma palestra", new_talk_path, class: "btn btn-primary btn-large" %>
+  <% end %>
 </div>
 
 <%= render_navigation level: 2 %>

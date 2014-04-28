@@ -5,4 +5,6 @@ describe Talk do
   it { should have_and_belong_to_many :audiences }
 
   it { should respond_to(:votes) }
+
+  it { should belong_to :user }
 end

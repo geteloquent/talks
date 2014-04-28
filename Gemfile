@@ -26,7 +26,9 @@ gem 'delegate_accessors'
 gem 'zeroclipboard-rails'
 gem 'acts_as_votable'
 gem 'draper', '~> 1.3'
+gem 'omniauth-github'
 gem 'kaminari'
+gem 'cancan'
 
 group :test, :development do
   gem 'factory_girl_rails'
