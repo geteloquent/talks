@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe TalkForm do
+  let(:user) { create(:user) }
   let(:attributes) do
     attributes_for(:talk). \
-      merge(nested_audiences_attributes: nested_audiences_attributes)
+      merge(nested_audiences_attributes: nested_audiences_attributes, \
+        user_id: user.id)
   end
   let(:nested_audiences_attributes) { { "0" => attributes_for(:audience) } }
   subject { described_class.new(attributes) }

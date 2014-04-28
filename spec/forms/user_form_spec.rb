@@ -1,14 +1,7 @@
 require 'spec_helper'
 
 describe UserForm do
-  let(:params) do
-    { username: "filipewl",
-      email: "fwl.ufpe@gmail.com",
-      name: "Filipe W. Lima",
-      avatar_url: "https://avatars.githubusercontent.com/u/381395?",
-      github_uid: "7408346"
-    }
-  end
+  let(:params) { attributes_for(:user) }
   subject { described_class.new(params) }
 
   it { should validate_presence_of(:name) }
