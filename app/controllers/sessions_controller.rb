@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       end
     end
 
-    session[:user_id] = user.id if user.id
+    session[:user_id] = user.id
     redirect_to root_path
   end
 
